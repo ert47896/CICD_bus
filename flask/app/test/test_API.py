@@ -54,3 +54,6 @@ class TestApi(BaseTestCase):
             query_string={"latitude": 25.0462559043502, "longitude": 121.51700353811},
         )
         self.assertEqual(response.status_code, 200)
+
+if __name__ == "__main__":
+    unittest.main()
