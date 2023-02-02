@@ -18,7 +18,7 @@ jobs:
     - name: Build the .env file for Flask application
       run: |
         cd flask/app/
-        echo "${{ secreats.ENV_FILE }}" > .env
+        echo "${{ secrets.ENV_FILE }}" > .env
     
     - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
       run: |
