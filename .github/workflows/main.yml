@@ -19,11 +19,7 @@ jobs:
       run: |
         cd flask/app/
         echo "${{ secrets.ENV_FILE }}" > .env
-    
-    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
-      run: |
-        docker compose -f docker-compose-nginx-proxy.yml up --build
-    
+        
     - name: Run Docker Compose to start Taipei Bus
       run: |
         docker compose up --build
@@ -33,7 +29,9 @@ jobs:
         cd flask/app/test/
         python -m unittest -v test_API
     
-    
+#    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
+#      run: |
+#        docker compose -f docker-compose-nginx-proxy.yml up --build
     
     
 #     - name: Set up Python 3.10
