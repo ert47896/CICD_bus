@@ -1,0 +1,50 @@
+name: Taipei Bus CI/CD
+
+# control the flow
+on:
+  push:
+    branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build the .env file for Flask application
+      run: |
+        cd flask/app/
+        echo "${{ secrets.ENV_FILE }}" > .env
+    
+    - name: Build Docker network for next step use
+      run: |
+        docker network create self-nginx-proxy
+    
+    - name: Run Docker Compose to start Taipei Bus application
+      run: |
+        docker compose up --build -d
+    
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    
+    - name: Run Python unit test to check web and API status
+      run: |
+        cd flask/app/test/
+        python -m unittest -v test_API
+    
+#    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
+#      run: |
+#        docker compose -f docker-compose-nginx-proxy.yml up --build
+    
+    
+#     - name: Set up Python 3.10
+#       uses: actions/setup-python@v3
+#       with:
+#         python-version: "3.10"
+
