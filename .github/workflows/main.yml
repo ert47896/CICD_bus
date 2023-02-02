@@ -28,6 +28,11 @@ jobs:
       run: |
         docker compose up --build -d
     
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    
     - name: Run Python unit test to check web and API status
       run: |
         cd flask/app/test/
