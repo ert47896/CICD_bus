@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link href="/css/routes.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+
+{% block script %}
+<script defer src="/js/routes.js"></script>
+{% endblock %}
+
+{% block nav %}
+<div class="search">
+    <input type="text" id="keyword" placeholder="輸入路線名稱查詢" /><button class="searchBtn"></button>
+</div>
+{% endblock %}

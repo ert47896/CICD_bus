@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link href="/css/stop.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+
+{% block map %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+{% endblock %}
+
+{% block script %}
+<script defer src="/js/stop.js"></script>
+{% endblock %}
+
+{% block nav %}
+<div class="timePart"></div>
+{% endblock %}
+
+{% block main %}
+<article id="mapId"></article>
+<aside class="stopAllRoutes">
+    <section class="stopData"></section>
+    <section class="allRoutes"></section>
+    <section class="routeStopsData">
+        <article class="routeStopAll"></article>
+    </section>
+</aside>
+{% endblock %}

@@ -1,0 +1,223 @@
+body{
+    margin: 0px;
+    display: flex;              /*設置footer部分(flex:auto)可適時填充頁面*/
+    flex-direction: column;
+    height: 100vh;              /*可視區高度100%，1vh = 可視區高度/100 */
+}
+/* nav */
+nav{
+    width: 100%;                /*設定寬度為畫面100%*/
+    position: fixed;            /*設定凍結視窗*/
+    top: 0px;
+    z-index: 999;                 /*設定z軸高度避免凍結視窗內容被body中其他物件覆蓋*/
+    display: flex;
+    padding: 10px 0px;           /*上下內縮10px*/
+    background-color: #ffffff;
+    font-family: "Noto Sans TC";
+    border-bottom:1px solid #E8E8E8;    /*設定物件底線樣式*/
+}
+.navLeftside{
+    flex: none;                 /*none為不彈性縮放，要給width*/
+    width:210px;
+    font-family: "Noto Sans";
+    font-size: 30px;
+    font-weight: bold;
+    color: #F75000;
+    display: flex;
+    align-items: center;        /*文字在容器內垂直置中*/
+    margin: 0px 0px 0px 10px;   /*向左外推10px*/
+}
+.hyperTitle{
+    color: inherit;             /*繼承原本的文字顏色(不因超連結變色)*/
+    text-decoration: none;      /*消除超連結底線*/
+}
+.timePart{
+    flex: auto;                 /*auto為彈性縮放，不用給width*/
+    display: flex;
+    align-items: center;        /*文字在容器內垂直置中*/
+    justify-content: center;
+    font-weight: normal;
+}
+.navRightside{
+    width: 170px;
+    flex: none;
+    list-style: none;           /*消除li的點*/
+    padding-inline-start: 0px;  /*消除li的前縮排*/
+    display: flex;
+    justify-content: center;    /*物件在容器內水平置中*/
+    align-items: center;        /*物件在容器內垂直置中*/
+    margin: 0px;                /*取消margin設定*/
+    color: #666666;
+    font-weight: bold;
+}
+.navRightside>li{
+    flex: none;
+    padding: 10px;
+    cursor: pointer;            /*改變滑鼠指標*/
+}
+/* main */
+main{
+    margin-top: 62px;
+    flex: auto;                 /*地圖高度依使用者螢幕高度延伸*/
+    display: flex;
+    max-height: calc(100% - 132px);     /*設定最大高度限制右方欄位高度 footer70px nav62px*/
+}
+/* main-map */
+#mapId{
+    flex: auto;              /*flex:auto寬度自動延伸*/
+    position: relative;     /*將地圖層當作基準元素，給location button擺放位置參考*/
+}
+/* map-stop-index */
+.map-stop-index{
+    background-color: transparent;
+    height: 10px;
+    line-height: 100%;
+}
+/* 自訂我的位置按鈕 */
+.locationBtn{
+    position: absolute;
+    top: 80px;              /*距離頂部 #mapId物件80px*/
+    left: 10px;             /*距離左邊界 #mapId物件10px*/
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff;
+    background-image: url("/image/target.png");     /*將符號target以背景圖呈現*/
+    background-repeat: no-repeat;                   /*背景圖不要重複出現*/
+    background-position: 50% 50%;                   /*背景圖置於容器中間*/
+    cursor: pointer;
+    z-index: 999;
+    border: 2px solid #bbbbbb;
+    border-radius: 2px;
+}
+/* 站牌搜尋部分 */
+.searchSide{
+    overflow-y: auto;       /*內容超過物件高度，以卷軸隱藏*/
+    flex: none;             /*flex:none設定固定寬度*/
+    width: 300px;
+    font-family: "Noto Sans TC";
+    font-size: 20px;
+    line-height: 150%;
+}
+.searchTitle{
+    margin: 20px;       /*上下左右20px*/
+    font-weight: bold;
+}
+.searchType{
+    background-color: #E8E8E8;
+    color: #666666;
+    margin: 15px 10px;       /*上下20px 左右10px*/
+    border-radius: 5px;
+}
+.searchMehtod{
+    font-weight: bold;
+    padding: 10px 10px 0px 10px;
+}
+.searchContent{
+    padding: 10px;
+}
+/* 使用者未點擊地圖先隱藏 */
+.hiddenElement{
+    display: none;
+}
+/* 使用者點擊地圖後顯示資訊 */
+.selectLocation{
+    display: block;
+}
+/* 使用者輸入地址資訊有誤 */
+.errorAddress{
+    color: #fa324b;
+    padding: 0px 10px;
+    font-size: 14px;
+}
+#keyword{
+    border-radius: 5px;
+    width: 210px;
+}
+input[id = keyword]{
+    font-family: "Noto Sans TC";
+    font-weight: bold;
+    font-size: 16px;
+    color: #757575;
+    padding: 5px;               /*input物件欄位內文字內縮5px*/
+}
+.searchExample{
+    padding: 0px 10px;
+    font-size: 14px;
+}
+.searchBtn{
+    font-size: 16px;
+    height: 32px;
+    width: 80px;
+    border: none;                                       /*取消btn物件邊框*/
+    background-color: #F75000;                      /*設定buttom背景顏色*/
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;                                    /*改變滑鼠指標*/
+    padding: 0px;                                       /*取消btn物件預設padding值*/
+}
+/* stops data */
+.stopData{
+    margin: 10px;
+}
+.eachStopData{
+    position: relative;     /*當作基準元素給span覆蓋用*/
+    margin: 15px 0px;       /*上下10px 左右0px*/
+    display: flex;
+    min-height: 30px;
+    border: solid #dddddd 1px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+}
+.stopUrlLink{
+    position: absolute;     /*設定讓span覆蓋整個li空間*/
+    width: 100%;            /*span高度 100% div*/
+    height: 100%;           /*span寬度 100% div*/
+    top: 0px;               /*起點左上角*/
+    left: 0px;
+    z-index: 1;             /*讓span向上浮一層*/
+}
+.stopIndex{
+    flex: none;             /*none要給寬度*/
+    width: 30px;
+    display: flex;          /*水平垂直置中*/
+    align-items: center;
+    justify-content: center;
+    background-color: #c5e6ff;
+    border-radius: 5px;
+}
+.stopName{
+    flex: auto;
+    margin: 0px 5px;
+    display: flex;          /*水平靠左垂直置中*/
+    align-items: center;
+    justify-content: flex-start;
+}
+.stopDistance{
+    flex: none;             /*none要給寬度*/
+    width: 100px;
+    display: flex;          /*水平垂直置中*/
+    align-items: center;
+    justify-content: center;
+    background-color: #ffcda8;
+    border-radius: 5px;
+}
+/* footer */
+footer{
+    background-color: #757575;
+    flex: none;                     /*footer固定高度*/
+    height: 70px;
+    display: flex;
+    flex-direction: column;         /*排列改為垂直對齊*/
+    align-items: center;            /*水平置中*/
+    justify-content: space-around;  /*垂直均分空間對齊*/
+    font-family: "Noto Sans TC";
+    font-weight: bold;
+    color: #ffffff;
+}
+.hyperTitleBlue{
+    text-decoration: none;      /*消除超連結底線*/
+}

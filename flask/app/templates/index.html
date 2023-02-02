@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link href="/css/index.css" rel="stylesheet" type="text/css" media="all" />
+{% endblock %}
+
+{% block map %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+{% endblock %}
+
+{% block cluster %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+{% endblock %}
+
+{% block script %}
+<script defer src="/js/index.js"></script>
+{% endblock %}
+
+{% block nav %}
+<div class="timePart"></div>
+<div class="totalBusPart"></div>
+{% endblock %}
+
+{% block main %}
+<article id="mapId">
+    <div class="locationBtn" title="我的位置(需開啟定位權限)"></div>
+</article>
+<aside></aside>
+{% endblock %}
