@@ -30,7 +30,7 @@ jobs:
     
     - name: Run Python unit test to check web and API status
       run: |
-        docker exec -it web bash
+        docker exec -i web bash
         cd /workspace/flask/app/
         python3 -m pytest -v
     
