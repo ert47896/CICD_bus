@@ -15,21 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.8"
-    
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pytest flask-testing
-
-    - name: Run Python unit test to check web and API status
-      run: |
-        cd flask/app/
-        python3 -m pytest -v
-
     - name: Build the .env file for Flask application
       run: |
         cd flask/app/
@@ -43,15 +28,27 @@ jobs:
       run: |
         docker compose up --build -d
     
-
+    - name: Run Python unit test to check web and API status
+      run: |
+        docker exec -it web bash
+        cd /workspace/flask/app/
+        python3 -m pytest -v
     
 #    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
 #      run: |
 #        docker compose -f docker-compose-nginx-proxy.yml up --build
-    
-    
-#     - name: Set up Python 3.10
-#       uses: actions/setup-python@v3
-#       with:
-#         python-version: "3.10"
 
+#    - name: Set up Python 3.8
+#      uses: actions/setup-python@v3
+#      with:
+#        python-version: "3.8"
+    
+#    - name: Install dependencies
+#      run: |
+#        python -m pip install --upgrade pip
+#        pip install pytest flask-testing
+
+#    - name: Run Python unit test to check web and API status
+#      run: |
+#        cd flask/app/
+#        python3 -m pytest -v
