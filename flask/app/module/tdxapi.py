@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Initialize parameters
-auth_response = None
 auth_url = (
     "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token"
 )
@@ -41,6 +40,8 @@ class Data:
 
         return {"authorization": "Bearer " + access_token}
 
+auth_instance = Auth()
+auth_response = requests.post(auth_url, auth_instance.get_auth_header())
 
 def get_data(url):
     try:
