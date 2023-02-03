@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Initialize parameters
+auth_response = None
 auth_url = (
     "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token"
 )
