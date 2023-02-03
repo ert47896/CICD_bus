@@ -40,9 +40,6 @@ class Data:
 
         return {"authorization": "Bearer " + access_token}
 
-auth_instance = Auth()
-auth_response = requests.post(auth_url, auth_instance.get_auth_header())
-
 def get_data(url):
     try:
         data_instance = Data(auth_response)
