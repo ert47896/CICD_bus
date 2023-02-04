@@ -42,7 +42,7 @@ class Data:
 
 if first_run:
     auth_instance = Auth()
-    auth_response = request.post(auth_url, auth_instance.get_auth_header())
+    auth_response = requests.post(auth_url, auth_instance.get_auth_header())
     first_run = False
 
 def get_data(url):
