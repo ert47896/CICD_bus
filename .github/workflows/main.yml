@@ -22,19 +22,18 @@ jobs:
     
     - name: Build Docker network for next step use
       run: |
-        cd flask
-        ls -la
         docker network create self-nginx-proxy
     
     - name: Run Docker Compose to start Taipei Bus application
       run: |
         docker compose up --build -d
 
-#    - name: Run Python unit test to check web and API status
-#      run: |
-#        cd flask/app/
-#        echo .env
-#        docker exec -i web sh -c "cd /workspace/flask/app/ && python -m pytest -v"
+    - name: Run Python unit test to check web and API status
+      run: |
+        cd flask/app/
+        echo .env
+        docker exec -i web sh -c "mysql -u'${{ secrets.DB_USER }}' -p -Dtaipeibus -e 'SELECT * FROM busroute LIMIT 1' && '${{ secrets.DB_PASSWORD }}'"
+        docker exec -i web sh -c "cd /workspace/flask/app/ && python -m pytest -v"
     
 #    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
 #      run: |
