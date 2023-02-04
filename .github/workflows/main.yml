@@ -18,6 +18,7 @@ jobs:
     - name: Build the .env file for Flask application
       run: |
         cd flask/app/
+        pwd
         echo "${{ secrets.ENV_FILE }}" > .env
     
     - name: Build Docker network for next step use
@@ -26,14 +27,7 @@ jobs:
     
     - name: Run Docker Compose to start Taipei Bus application
       run: |
-        docker compose up --build -d
-
-    - name: Validate files
-      with:
-        repoToken: ${{ secrets.TOKEN }}
-        excludeFiles: '/flask/app/.env'
-      id: validate
-      uses: microsoftgraph/eol-blocker@v1.0.8
+        docker compose up --build
 
 #    - name: Run Python unit test to check web and API status
 #      run: |
