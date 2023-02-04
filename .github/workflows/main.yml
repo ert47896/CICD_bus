@@ -18,7 +18,7 @@ jobs:
     - name: Build the .env file for Flask application
       run: |
         cd flask/app/
-        pwd
+        ls -la
         echo "${{ secrets.ENV_FILE }}" > .env
     
     - name: Build Docker network for next step use
@@ -27,7 +27,7 @@ jobs:
     
     - name: Run Docker Compose to start Taipei Bus application
       run: |
-        docker compose up --build
+        docker compose up --build -d
 
 #    - name: Run Python unit test to check web and API status
 #      run: |
