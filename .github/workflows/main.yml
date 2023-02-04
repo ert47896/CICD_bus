@@ -39,6 +39,14 @@ jobs:
         docker network ls
         docker exec -i web sh -c "cd /workspace/flask/app/module && python MOTCdata_init.py"
     
+    - name: Run Python test2
+      run: |
+        cd flask/app/
+        ls -la
+        docker exec -i db sh -c "mysql -u'${{ secrets.DB_USER }}' -p'${{ secrets.DB_PASSWORD }}' -Dtaipeibus -e'SELECT COUNT(routeUID) FROM busroute;'"
+        docker exec -i db sh -c "mysql -u'${{ secrets.DB_USER }}' -p'${{ secrets.DB_PASSWORD }}' -Dtaipeibus -e'SHOW TABLES;'"
+        docker exec -i db sh -c "mysql -u'${{ secrets.DB_USER }}' -p'${{ secrets.DB_PASSWORD }}' -Dtaipeibus -e'SELECT COUNT(oname_tw) FROM operator;'"
+    
 #    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
 #      run: |
 #        docker compose -f docker-compose-nginx-proxy.yml up --build
