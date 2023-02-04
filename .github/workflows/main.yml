@@ -26,7 +26,9 @@ jobs:
     
     - name: Run Docker Compose to start Taipei Bus application
       run: |
-        sudo docker compose up --build -d
+        cd flask
+        chmod a+wx startproject.sh
+        docker compose up --build -d
 
     - name: Run Python unit test to check web and API status
       run: |
