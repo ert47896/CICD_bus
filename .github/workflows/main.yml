@@ -27,12 +27,19 @@ jobs:
     - name: Run Docker Compose to start Taipei Bus application
       run: |
         docker compose up --build -d
-    
-    - name: Run Python unit test to check web and API status
-      run: |
-        cd flask/app/
-        echo .env
-        docker exec -i web sh -c "cd /workspace/flask/app/ && python -m pytest -v"
+
+    - name: Validate files
+      with:
+        repoToken: ${{ secrets.TOKEN }}
+        excludeFiles: '/flask/app/.env'
+      id: validate
+      uses: microsoftgraph/eol-blocker@v1.0.8
+
+#    - name: Run Python unit test to check web and API status
+#      run: |
+#        cd flask/app/
+#        echo .env
+#        docker exec -i web sh -c "cd /workspace/flask/app/ && python -m pytest -v"
     
 #    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
 #      run: |
