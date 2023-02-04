@@ -30,7 +30,7 @@ jobs:
     
     - name: Run Python unit test to check web and API status
       run: |
-        echo docker ps -a
+        docker ps -a
     
 #    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
 #      run: |
