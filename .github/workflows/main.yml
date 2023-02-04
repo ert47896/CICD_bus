@@ -22,6 +22,7 @@ jobs:
     
     - name: Build Docker network for next step use
       run: |
+        cd flask
         ls -la
         docker network create self-nginx-proxy
     
