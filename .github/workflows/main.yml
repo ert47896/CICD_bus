@@ -26,7 +26,7 @@ jobs:
     
     - name: Run Docker Compose to start Taipei Bus application
       run: |
-        sudo docker compose up --build -d
+        docker compose up --build -d
 
     - name: Run Python unit test to check web and API status
       run: |
@@ -41,6 +41,7 @@ jobs:
       run: |
         cd flask
         ls -la
+        cat startproject.sh
         docker exec -i db sh -c "mysql -u'${{ secrets.DB_USER }}' -p'${{ secrets.DB_PASSWORD }}' -Dtaipeibus -e'SELECT COUNT(routeUID) FROM busroute;'"
         docker exec -i db sh -c "mysql -u'${{ secrets.DB_USER }}' -p'${{ secrets.DB_PASSWORD }}' -Dtaipeibus -e'SHOW TABLES;'"
         docker exec -i db sh -c "mysql -u'${{ secrets.DB_USER }}' -p'${{ secrets.DB_PASSWORD }}' -Dtaipeibus -e'SELECT COUNT(oname_tw) FROM operator;'"
