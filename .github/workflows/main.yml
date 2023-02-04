@@ -31,7 +31,7 @@ jobs:
     - name: Run Python unit test to check web and API status
       run: |
         cd flask/app/
-        cat .env
+        echo .env
         docker exec -i web sh -c "cd /workspace/flask/app/ && python -m pytest -v"
     
 #    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
