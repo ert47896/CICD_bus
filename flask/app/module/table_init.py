@@ -2,11 +2,11 @@ from mysqlmethods import mysql
 
 # Reset tables if exist
 mysql.tableDBControl(
-    """DROP TABLE IF EXISTS stationinfo 
-stopofstation
-operator
-busroute
-operatorofroute
+    """DROP TABLE IF EXISTS stationinfo,
+stopofstation,
+operator,
+busroute,
+operatorofroute,
 stopofroute"""
 )
 
