@@ -31,12 +31,10 @@ jobs:
     - name: Run Python unit test to check web and API status
       run: |
         cd flask/app/
-        cat .env
-        docker exec -i db sh -c "mysql -u'${{ secrets.DB_USER }}' -p'${{ secrets.DB_PASSWORD }}' -Dtaipeibus -e'SELECT routeUID FROM busroute LIMIT 1;'"
-        docker exec -i db sh -c "mysql -u'${{ secrets.DB_USER }}' -p'${{ secrets.DB_PASSWORD }}' -Dtaipeibus -e'SHOW TABLES;'"
-        cd flask/app/
         ls -la
         cat errorinsql.txt
+        docker exec -i db sh -c "mysql -u'${{ secrets.DB_USER }}' -p'${{ secrets.DB_PASSWORD }}' -Dtaipeibus -e'SELECT COUNT(routeUID) FROM busroute;'"
+        docker exec -i db sh -c "mysql -u'${{ secrets.DB_USER }}' -p'${{ secrets.DB_PASSWORD }}' -Dtaipeibus -e'SHOW TABLES;'"
         docker exec -i web sh -c "cd /workspace/flask/app/ && python -m pytest -v"
     
 #    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
