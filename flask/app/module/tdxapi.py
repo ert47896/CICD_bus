@@ -7,7 +7,7 @@ load_dotenv()
 auth_url = (
     "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token"
 )
-
+first_run = True
 # Reference: https://github.com/tdxmotc/SampleCode
 
 
@@ -39,6 +39,11 @@ class Data:
         access_token = auth_JSON.get("access_token")
 
         return {"authorization": "Bearer " + access_token}
+
+if first_run:
+    auth_instance = Auth()
+    auth_response = request.post(auth_url, auth_instance.get_auth_header())
+    first_run = False
 
 def get_data(url):
     try:
