@@ -37,7 +37,7 @@ jobs:
         docker exec -i db sh -c "mysql -u'${{ secrets.DB_USER }}' -p'${{ secrets.DB_PASSWORD }}' -Dtaipeibus -e'SELECT COUNT(oname_tw) FROM operator;'"
         docker network inspect self-nginx-proxy
         docker network ls
-        docker exec -i web sh -c "cd /workspace/flask/app/ && python -m pytest -v"
+        docker exec -i web sh -c "cd /workspace/flask/app/module && python MOTCdata_init.py"
     
 #    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
 #      run: |
