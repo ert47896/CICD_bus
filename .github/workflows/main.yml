@@ -18,11 +18,11 @@ jobs:
     - name: Build the .env file for Flask application
       run: |
         cd flask/app/
-        ls -la
         echo "${{ secrets.ENV_FILE }}" > .env
     
     - name: Build Docker network for next step use
       run: |
+        ls -la
         docker network create self-nginx-proxy
     
     - name: Run Docker Compose to start Taipei Bus application
