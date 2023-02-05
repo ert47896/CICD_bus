@@ -1,6 +1,8 @@
 #!/bin/sh
 cd /workspace/flask/app
+python ./module/test1.py
 python ./module/table_init.py
-sleep 5
+python ./module/test2.py
 python ./module/MOTCdata_init.py
+python ./module/test3.py
 uwsgi --ini app.ini
