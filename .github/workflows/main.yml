@@ -30,7 +30,7 @@ jobs:
 
     - name: Run Python unit test to check web and API status
       run: |
-        docker exec -i web sh -c "cd /workspace/flask/app/module && ls -la"
+        docker exec -i web sh -c "cd /workspace/flask/app/module && python table_init.py && python MOTCdata_init.py" 
         docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"        
 #        docker exec -i web sh -c "cd /workspace/flask/app && python ./module/MOTCdata_init.py"        
 
