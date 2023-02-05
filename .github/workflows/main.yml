@@ -34,7 +34,7 @@ jobs:
         docker exec -i web sh -c "cd /workspace && ls"
         docker exec -i web sh -c "cd /workspace/flask/app && ls"
         docker exec -i web sh -c "cd /workspace/flask/app/module && ls"
-        docker-compose logs
+        docker-compose logs web
         docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
 #        docker exec -i web sh -c "cd /workspace/flask/app/module && python table_init.py && python MOTCdata_init.py"
 #        docker exec -i web sh -c "cd /workspace/flask/app && python ./module/MOTCdata_init.py"        
