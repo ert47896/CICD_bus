@@ -13,4 +13,4 @@ RUN pip3 install --no-cache-dir --upgrade -r /workspace/flask/requirements.txt
 COPY . .
 
 RUN chmod a+x /workspace/flask/startproject.sh
-ENTRYPOINT ["/workspace/flask/startproject.sh"]
+#ENTRYPOINT ["/workspace/flask/startproject.sh"]
