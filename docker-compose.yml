@@ -31,6 +31,10 @@ services:
         condition: service_healthy
     networks:
       - proxy
+    healthcheck:
+      test: ["CMD", "test", "-f", "/workspace/flask/app/module/checkpoint.txt"]
+      timeout: 10s
+      retries: 5
     container_name: web
    
   nginx:
@@ -42,6 +46,9 @@ services:
     volumes:
       - web_data:/workspace/flask
       - ./log:/var/log/nginx
+    depends_on:
+      web:
+        condition: service_healthy
     networks:
       - proxy
     environment:
