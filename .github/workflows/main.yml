@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Python unit test to check web and API status
         run: |
-          while [ $(docker inspect --format='{{ .State.Health.Status }}' web) == "unhealthy" ]
+          while [ $(docker inspect --format='{{ .State.Health.Status }}' web) != "healthy" ]
           do
             sleep 5
           done
