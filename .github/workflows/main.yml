@@ -32,6 +32,8 @@ jobs:
         run: |
           if [[ $(docker inspect --format='{{ .State.Health.Status }}' web) == "healthy" ]]; then
             docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
+          else
+            sleep 10 && docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
           fi        
 #          else
 #            sleep 10 && docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
