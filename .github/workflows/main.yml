@@ -30,9 +30,9 @@ jobs:
 
       - name: Run Python unit test to check web and API status
         run: |
-          if [ $(docker inspect --format='{{ .State.Health.Status }}' web) == "healthy" ]; then
+          if [[ $(docker inspect --format='{{ .State.Health.Status }}' web) == "healthy" ]]; then
             docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
-        shell: bash
+          fi        
 #          else
 #            sleep 10 && docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
 #          docker exec -i web sh -c "cd /workspace/flask/app && python ./module/MOTCdata_init.py"
