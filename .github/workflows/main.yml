@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Python unit test to check web and API status
         run: |
-          echo $(docker inspect --format='{{ .State.Health.Status }}' web)
+          docker inspect --format='{{ .State.Health.Status }}' web
 #          while [[ $(docker inspect --format='{{ .State.Health.Status }}' web) == "unhealthy" ]]
 #          do
 #            sleep 5
