@@ -30,7 +30,7 @@ services:
       mysqldb:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000" ]
+      test: ["CMD", "test", "-f", "/workspace/flask/app/module/checkpoint.txt" ]
       timeout: 10s
       retries: 5
     networks:
