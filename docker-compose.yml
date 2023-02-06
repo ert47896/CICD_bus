@@ -42,9 +42,6 @@ services:
     volumes:
       - web_data:/workspace/flask
       - ./log:/var/log/nginx
-    depends_on:
-      web:
-        condition: service_healthy
     networks:
       - proxy
     environment:
