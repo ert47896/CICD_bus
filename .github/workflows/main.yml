@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Python unit test to check web and API status
         run: |
-          if $(docker exec -i web sh -c "test -f /workspace/flask/app/module/checkpoint.txt"); then
+          if docker exec -i web sh -c "test -f /workspace/flask/app/module/checkpoint.txt"; then
             docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
           fi
 
