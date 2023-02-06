@@ -13,25 +13,28 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Build the .env file for Flask application
-      run: |
-        cd flask/app/
-        echo "${{ secrets.ENV_FILE }}" > .env
+      - name: Build the .env file for Flask application
+        run: |
+          cd flask/app/
+          echo "${{ secrets.ENV_FILE }}" > .env
     
-    - name: Build Docker network for next step use
-      run: |
-        docker network create self-nginx-proxy
+      - name: Build Docker network for next step use
+        run: |
+          docker network create self-nginx-proxy
     
-    - name: Run Docker Compose to start Taipei Bus application
-      run: |
-        docker compose up --build
+      - name: Run Docker Compose to start Taipei Bus application
+        run: |
+          docker compose up --build -d
 
-    - name: Run Python unit test to check web and API status
-      run: |
-        docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
-#        docker exec -i web sh -c "cd /workspace/flask/app && python ./module/MOTCdata_init.py"
+      - name: Run Python unit test to check web and API status
+        run: |
+          if [[ $(docker inspect --format='{{ .State.Health.Status }}' web) == "healthy" ]]; then
+            docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
+#          else
+#            sleep 10 && docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
+#          docker exec -i web sh -c "cd /workspace/flask/app && python ./module/MOTCdata_init.py"
 
 #    - name: Deploy to AWS EC2
 
