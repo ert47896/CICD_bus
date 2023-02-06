@@ -32,7 +32,7 @@ services:
     networks:
       - proxy
     healthcheck:
-      test: ["CMD", "test", "-f", "/workspace/flask/app/module/checkpoint.txt"]
+      test: ["CMD", "test", "-f", "/workspace/flask/app/module/checkpoint.txt", ";", "then", "exit"]
       timeout: 10s
       retries: 5
     container_name: web
