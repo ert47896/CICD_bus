@@ -30,11 +30,20 @@ jobs:
 
       - name: Run Python unit test to check web and API status
         run: |
-          if [[ $(docker inspect --format='{{ .State.Health.Status }}' web) == "healthy" ]]; then
-            docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
-          else
-            sleep 10 && docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
-          fi        
+          while [ $(docker inspect --format='{{ .State.Health.Status }}' web) == "unhealthy" ]
+          do
+            sleep 5
+          done
+          docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
+
+#      - name: Run Python unit test to check web and API status
+#        run: |
+#          if [[ $(docker inspect --format='{{ .State.Health.Status }}' web) == "healthy" ]]; then
+#            docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
+#          else
+#            sleep 20 && docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
+#          fi
+
 #          else
 #            sleep 10 && docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
 #          docker exec -i web sh -c "cd /workspace/flask/app && python ./module/MOTCdata_init.py"
