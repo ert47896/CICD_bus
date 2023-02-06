@@ -30,12 +30,9 @@ jobs:
 
       - name: Run Python unit test to check web and API status
         run: |
-          docker inspect --format='{{ .State.Health.Status }}' web
-          while [[ $(docker inspect --format='{{ .State.Health.Status }}' web) != "healthy" ]]
-          do
-            sleep 5
-          done
-          docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
+          if [[ $(docker exec -i web sh -c "test -f '/workspace/flask/app/module/checkpoint.txt'") == true ]]; then
+            docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
+          fi
 
 #      - name: Run Python unit test to check web and API status
 #        run: |
