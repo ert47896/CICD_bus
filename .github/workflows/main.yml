@@ -30,7 +30,6 @@ jobs:
 
       - name: Run Python unit test to check web and API status
         run: |
-          docker exec -i web sh -c "cd /workspace/flask/app && ls -la"
           cd flask
           chmod a+x ./checkdbdata.sh
           ./checkdbdata.sh
