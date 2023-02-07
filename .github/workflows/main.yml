@@ -45,9 +45,11 @@ jobs:
           TARGET: ${{ secrets.TARGET_DIR }}
           SCRIPT_BEFORE: |
             whoami
+            pwd
             ls -la
           SCRIPT_AFTER: |
             whoami
+            pwd
             ls -la
             echo $RSYNC_STDOUT
           
