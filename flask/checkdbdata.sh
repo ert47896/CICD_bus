@@ -1,5 +1,4 @@
 #!/bin/sh
-result="Success!"
 #check_result=$(docker exec -i web sh -c "test -f /workspace/flask/app/module/cache.txt" && echo "Success!")
 while [ ! $(docker exec -i web sh -c "test -f /workspace/flask/app/module/checkpoint.txt" && echo "Success!") ];
 do
