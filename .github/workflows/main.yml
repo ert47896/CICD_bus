@@ -30,8 +30,9 @@ jobs:
 
       - name: Run Python unit test to check web and API status
         run: |
-          sleep 15
-          docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
+          cd flask
+          chmod a+x ./checkdbdata.sh
+          ./checkdbdata.sh
           
 #      - name: Run Python unit test to check web and API status
 #        run: |
