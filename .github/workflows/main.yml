@@ -43,14 +43,10 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
-          SCRIPT_BEFORE: |
-            whoami
-            pwd
-            ls -la
           SCRIPT_AFTER: |
+            cd bus
             pwd
             ls -la
-            echo $RSYNC_STDOUT
           
 #      - name: Run Python unit test to check web and API status
 #        run: |
