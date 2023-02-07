@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Check the files
+        uses: actions/checkout@v3
 
       - name: Build the .env file for Flask application
         run: |
@@ -33,6 +34,22 @@ jobs:
           cd flask
           chmod a+x ./checkdbdata.sh
           ./checkdbdata.sh
+          
+      # Deploy to AWS EC2
+      - name: Deploy to EC2
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET_DIR }}
+          SCRIPT_BEFORE: |
+            whoami
+            ls -la
+          SCRIPT_AFTER: |
+            whoami
+            ls -la
+            echo $RSYNC_STDOUT
           
 #      - name: Run Python unit test to check web and API status
 #        run: |
