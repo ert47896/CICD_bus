@@ -35,7 +35,7 @@ jobs:
 #          cd flask
 #          chmod a+x ./checkdbdata.sh
 #          ./checkdbdata.sh
-          
+# test          
   deploy:
 #    needs: build
     runs-on: ubuntu-20.04   
