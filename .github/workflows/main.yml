@@ -9,35 +9,35 @@ on:
 
 jobs:
   # Check the application build or not, then deploy in EC2
-#  build:
-    # The type of runner that the job will run on
-#    runs-on: ubuntu-20.04
+  build:
+     The type of runner that the job will run on
+    runs-on: ubuntu-20.04
 
-#    steps:
-#      - name: Check the files
-#        uses: actions/checkout@v3
+    steps:
+      - name: Check the files
+        uses: actions/checkout@v3
 
-#      - name: Build the .env file for Flask application
-#        run: |
-#          cd flask/app/
-#          echo "${{ secrets.ENV_FILE }}" > .env
+      - name: Build the .env file for Flask application
+        run: |
+          cd flask/app/
+          echo "${{ secrets.ENV_FILE }}" > .env
     
-#      - name: Build Docker network for next step use
-#        run: |
-#          docker network create self-nginx-proxy
+      - name: Build Docker network for next step use
+        run: |
+          docker network create self-nginx-proxy
     
-#      - name: Run Docker Compose to start Taipei Bus website
-#        run: |
-#          docker compose up --build -d
+      - name: Run Docker Compose to start Taipei Bus website
+        run: |
+          docker compose up --build -d
 
-#      - name: Run Python unit test to check web and API status
-#        run: |
-#          cd flask
-#          chmod a+x ./checkdbdata.sh
-#          ./checkdbdata.sh
-# test          
+      - name: Run Python unit test to check web and API status
+        run: |
+          cd flask
+          chmod a+x ./checkdbdata.sh
+          ./checkdbdata.sh
+
   deploy:
-#    needs: build
+    needs: build
     runs-on: ubuntu-20.04   
     
     steps:
