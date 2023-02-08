@@ -53,8 +53,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${REMOTE_USER}@${REMOTE_HOST} '
           cd bus
           git pull origin main
-          sudo docker compose -f docker-compose.yml down
-          sudo docker volume rm nginx-proxy-compose_html
+          sudo docker compose -f docker-compose.yml down -v
           sudo docker compose -f docker-compose.yml up -d
           '
           
