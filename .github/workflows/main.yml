@@ -10,7 +10,7 @@ on:
 jobs:
   # Check the application build or not, then deploy in EC2
   build:
-     The type of runner that the job will run on
+    # The type of runner that the job will run on
     runs-on: ubuntu-20.04
 
     steps:
@@ -56,38 +56,3 @@ jobs:
           sudo docker compose -f docker-compose.yml stop
           sudo docker compose -f docker-compose.yml start
           '
-          
-#      - name: Run Python unit test to check web and API status
-#        run: |
-#          if [[ $(docker inspect --format='{{ .State.Health.Status }}' web) == "healthy" ]]; then
-#            docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
-#          else
-#            sleep 20 && docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
-#          fi
-
-#          else
-#            sleep 10 && docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
-#          docker exec -i web sh -c "cd /workspace/flask/app && python ./module/MOTCdata_init.py"
-
-#    - name: Deploy to AWS EC2
-
-
-
-#    - name: Run Docker Compose to start Nginx proxy server and automate create/renew SSL certificates via Let's Encrypt
-#      run: |
-#        docker compose -f docker-compose-nginx-proxy.yml up --build
-
-#    - name: Set up Python 3.8
-#      uses: actions/setup-python@v3
-#      with:
-#        python-version: "3.8"
-    
-#    - name: Install dependencies
-#      run: |
-#        python -m pip install --upgrade pip
-#        pip install pytest flask-testing
-
-#    - name: Run Python unit test to check web and API status
-#      run: |
-#        cd flask/app/
-#        python3 -m pytest -v
