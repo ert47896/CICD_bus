@@ -41,7 +41,7 @@ services:
       - web
     volumes:
       - web_data:/workspace/flask
-      - ./log:/var/log/nginx
+      - /var/log/bus_web:/var/log/nginx
     networks:
       - proxy
     environment:
