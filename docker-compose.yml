@@ -25,7 +25,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - web_data:/workspace/flask
+      - ./flask:/workspace/flask
     depends_on:
       mysqldb:
         condition: service_healthy
@@ -50,7 +50,6 @@ services:
     container_name: proxied-bus
 
 volumes:
-  web_data:
   mysql:
   mysql_config:
 
