@@ -45,8 +45,10 @@ jobs:
           TARGET: ${{ secrets.TARGET_DIR }}
           SCRIPT_AFTER: |
             cd bus
+            sudo docker ps -a
             sudo docker compose -f docker-compose.yml stop
             git pull origin main
+            sudo docker ps -a
             sudo docker compose -f docker-compose.yml start
           
 #      - name: Run Python unit test to check web and API status
