@@ -54,7 +54,7 @@ jobs:
           cd bus
           git pull origin main
           sudo docker compose -f docker-compose.yml stop
-          sudo docker compose -f docker-compose.yml start
+          sudo docker compose -f docker-compose.yml restart
           '
           
 #      - name: Run Python unit test to check web and API status
