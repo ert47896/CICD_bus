@@ -25,7 +25,7 @@ jobs:
         run: |
           docker network create self-nginx-proxy
     
-      - name: Run Docker Compose to start Taipei Bus web application
+      - name: Run Docker Compose to start Taipei Bus application
         run: |
           docker compose up --build -d
 
