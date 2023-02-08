@@ -53,8 +53,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${REMOTE_USER}@${REMOTE_HOST} '
           cd bus
           git pull origin main
-          sudo docker compose -f docker-compose.yml stop
-          sudo docker compose -f docker-compose.yml restart
+          sudo docker compose -f docker-compose.yml down
+          sudo docker compose -f docker-compose.yml up
           '
           
 #      - name: Run Python unit test to check web and API status
