@@ -40,7 +40,7 @@ services:
     depends_on:
       - web
     volumes:
-      - web_data:/workspace/flask
+      - ./flask:/workspace/flask
       - /var/log/bus_web:/var/log/nginx
     networks:
       - proxy
