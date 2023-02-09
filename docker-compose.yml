@@ -1,23 +1,6 @@
 version: '3.8'
 name: bus
 services:
-  mysqldb:
-    image: mysql
-    ports:
-      - 33306:3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      timeout: 10s
-      retries: 5
-    volumes:
-      - mysql:/var/lib/mysql
-      - mysql_config:/etc/mysql
-      - ./dbinit:/docker-entrypoint-initdb.d
-    networks:
-      - proxy
-    container_name: db
 
   web:
     build:
@@ -26,11 +9,9 @@ services:
       - 3000:3000
     volumes:
       - ./flask:/workspace/flask
-    depends_on:
-      mysqldb:
-        condition: service_healthy
     networks:
       - proxy
+      - database
     container_name: web
    
   nginx:
@@ -49,12 +30,11 @@ services:
       - LETSENCRYPT_HOST=testbus.taipeilife.site
     container_name: proxied-bus
 
-volumes:
-  mysql:
-  mysql_config:
-
 networks:
   proxy:
     external: true
     name: self-nginx-proxy
- 
+  
+  database:
+    external: true
+    name: self-mysql
