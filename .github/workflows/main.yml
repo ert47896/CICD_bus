@@ -25,6 +25,10 @@ jobs:
       - name: Build Docker network for next step use
         run: |
           docker network create self-nginx-proxy
+          
+      - name: Run Docker Compose to start MySQL for Taipei Bus website
+        run: |
+          docker compose -f docker-compose-db.yml up -d    
     
       - name: Run Docker Compose to start Taipei Bus website
         run: |
