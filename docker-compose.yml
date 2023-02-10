@@ -25,8 +25,8 @@ services:
     networks:
       - proxy
     environment:
-      - VIRTUAL_HOST=testbus.taipeilife.site
-      - LETSENCRYPT_HOST=testbus.taipeilife.site
+      - VIRTUAL_HOST=bus.taipeilife.site
+      - LETSENCRYPT_HOST=bus.taipeilife.site
     container_name: proxied-bus
 
 networks:
