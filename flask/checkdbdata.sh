@@ -7,6 +7,7 @@ finished=$(docker top web | grep "[p]ython test.py")
 whoami
 cd /bin
 ls -la | grep sh
+echo $unfinished
 while [ $unfinished ];
 do
 	echo "Wait insert TDX data into MySQL"
