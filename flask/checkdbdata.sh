@@ -1,6 +1,7 @@
 #!/bin/sh
 #check_result=$(docker exec -i web sh -c "test -f /workspace/flask/app/cache.txt && echo 'Success!'")
 unfinished=$(docker top web | grep "[p]ython ./module/MOTCdata_init.py")
+rm /bin/sh
 ln -s /bin/bash /bin/sh
 whoami
 cd /bin
