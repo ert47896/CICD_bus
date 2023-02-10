@@ -1,7 +1,7 @@
 #!/bin/sh
 #check_result=$(docker exec -i web sh -c "test -f /workspace/flask/app/cache.txt && echo 'Success!'")
-docker exec -i web sh -c "ps aux | [p]ython"
-docker exec -i web sh -c "ps aux | [p]ython ./module/MOTCdata_init.py"
+docker top web
+docker top web | grep [p]ython
 while [ $(docker exec -i web sh -c "ps aux | grep '[p]ython MOTCdata_init.py' && echo 'Success!'") ];
 do
 	echo "Wait insert TDX data into MySQL"
