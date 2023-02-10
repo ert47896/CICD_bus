@@ -6,6 +6,8 @@ finished=$(docker top web | grep "[p]ython test.py")
 #ln -s /bin/bash /bin/sh
 whoami
 cd /bin
+rm sh
+ln -s bash sh
 ls -la | grep sh
 echo $unfinished
 while [ $unfinished ];
