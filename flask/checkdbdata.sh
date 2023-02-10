@@ -1,7 +1,7 @@
 #!/bin/sh
 #check_result=$(docker exec -i web sh -c "test -f /workspace/flask/app/cache.txt && echo 'Success!'")
 unfinished=$(docker top web | grep "[p]ython ./module/MOTCdata_init.py")
-yes n | sudo dpkg-reconfigure dash
+sudo dpkg-reconfigure dash
 cd /bin
 ls -la
 echo $unfinished
