@@ -1,16 +1,11 @@
 #!/bin/sh
 #check_result=$(docker exec -i web sh -c "test -f /workspace/flask/app/cache.txt && echo 'Success!'")
-unfinished=$(docker top web | grep "[p]ython ./module/MOTCdata_init.py" | grep [p]ython)
-finished=$(docker top web | grep "[p]ython test.py")
-#rm /bin/sh
-#ln -s /bin/bash /bin/sh
-whoami
+unfinished=$(docker top web | grep "[p]ython ./module/MOTCdata_init.py" | awk "{print $10}")
+
 cd /bin
-rm sh
-ln -s bash sh
 ls -la | grep sh
 echo $unfinished
-while [ $unfinished ];
+while [ $unfinished != "" ];
 do
 	echo "Wait insert TDX data into MySQL"
 	#echo $(docker exec -i web sh -c "cd /workspace/flask/app && ls -la")
