@@ -1,7 +1,7 @@
 #!/bin/sh
 #check_result=$(docker exec -i web sh -c "test -f /workspace/flask/app/cache.txt && echo 'Success!'")
 unfinished=$(docker top web | grep "[p]ython ./module/MOTCdata_init.py")
-dpkg-reconfigure dash -no
+dpkg-reconfigure dash && no
 while [ $unfinished ];
 do
 	echo "Wait insert TDX data into MySQL"
