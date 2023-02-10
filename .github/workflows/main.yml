@@ -38,7 +38,7 @@ jobs:
         run: |
           cd flask
           chmod a+x ./checkdbdata.sh
-          ./checkdbdata.sh
+          sudo env RUNNER_ALLOW_RUNASROOT="1" ./checkdbdata.sh
 
   deploy:
     needs: build
