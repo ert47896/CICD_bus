@@ -6,6 +6,6 @@ do
 	#echo $(docker exec -i web sh -c "cd /workspace/flask/app && ls -la")
 	sleep 5
 done
-[ -f ~/bus/flask/app/checkpoint.txt ] && yes y | rm ~/bus/flask/app/checkpoint.txt
+[ -f ~/bus/flask/app/checkpoint.txt ] && yes | rm ~/bus/flask/app/checkpoint.txt
 docker exec -i web sh -c "cd /workspace/flask/app && python -m pytest -v"
 
