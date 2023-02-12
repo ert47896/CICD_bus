@@ -116,5 +116,5 @@ for eachRow in response:
 insertSql = "INSERT INTO stopofroute (routeUID, direction, stopUID, stopsequence) VALUES (%s, %s, %s, %s)"
 mysql.cudData(insertSql, insertValue)
 
-with open("checkpoint.txt", "a") as outfile:
-    outfile.writelines("success")
+#with open("checkpoint.txt", "a") as outfile:
+    #outfile.writelines("success")
